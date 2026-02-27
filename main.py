@@ -53,13 +53,18 @@ class GmailOrganizerApp:
         self.auto_connect()
 
     def detect_system_theme(self) -> str:
-        """Detect macOS system appearance."""
+        """Detect system appearance: macOS via defaults; Windows falls back to light."""
         try:
-            result = subprocess.check_output(
-                ["defaults", "read", "-g", "AppleInterfaceStyle"],
-                stderr=subprocess.DEVNULL,
-            ).decode("utf-8", errors="ignore").strip()
-            return "dark" if result.lower() == "dark" else "light"
+            if os.name == "posix" and os.uname().sysname == "Darwin":
+                # macOS: read system appearance
+                result = subprocess.check_output(
+                    ["defaults", "read", "-g", "AppleInterfaceStyle"],
+                    stderr=subprocess.DEVNULL,
+                ).decode("utf-8", errors="ignore").strip()
+                return "dark" if result.lower() == "dark" else "light"
+            else:
+                # Windows and others: default to light (could add Windows registry detection later)
+                return "light"
         except Exception:
             return "light"
 
