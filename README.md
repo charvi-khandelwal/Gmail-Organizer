@@ -43,8 +43,14 @@ Create `gmail_credentials.json` in the project root:
 
 ### 3) Run
 
+**macOS (auto-detects light/dark):**
 ```bash
 python3 main.py
+```
+
+**Windows (starts in light mode; theme toggle works):**
+```bash
+python main.py
 ```
 
 ## Gmail API setup checklist
