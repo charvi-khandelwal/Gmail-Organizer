@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Local app/runtime files
+email_organizer.db
+*.db
+
+# Credentials & tokens (DO NOT COMMIT)
+gmail_credentials.json
+outlook_credentials.json
+gmail_token.pickle
+
+# macOS
+.DS_Store
